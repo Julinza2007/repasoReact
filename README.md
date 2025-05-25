@@ -1,9 +1,9 @@
 # React ⚛️ + Vite ⚡ + Julinza
 
 ## Requisitos para empezar:
-- Saber utilizar [Git](#qué-es-git-y-para-qué-lo-usaremos) y algunas de sus herramientas (al menos las que se hacen mención acá).
+- Saber utilizar [`Git`](#qué-es-git-y-para-qué-lo-usaremos) y algunas de sus herramientas (al menos las que se hacen mención acá).
 - Utilizar un editor de código fuente, en mi caso utilizo VScode -> [acá tienen el link de descarga](https://code.visualstudio.com).
-- Instalar Node.js (recomendado instalar la versión LTS para más estabilidad) para hacer proyetos con Vite y cosas del backend. -> [acá otro link](https://nodejs.org/es).
+- Instalar [`Node.js`](#nodejs) (recomendado instalar la versión LTS para más estabilidad) para hacer proyetos con Vite y cosas del backend. -> [acá otro link](https://nodejs.org/es).
 
 ## Lo primero a realizar.
 ### 1) Abrir nuestra terminal preferida. Puede ser `CMD`, `GitBash`, etc.
@@ -33,11 +33,11 @@ $ npm create vite@latest
 <details> 
 <summary>Aclaración.</summary>
 
-Como al Package Name le pone el mismo nombre que al del proyecto si a este último le colocás espacios, mayusculas o tildes [npm](#npm) no los reconocerá como caracteres válidos y te pedirá que vos nombres al Package Name con esas restricciones.
+Como al Package Name le pone el mismo nombre que al del proyecto, si a este último le colocás espacios, mayusculas o tildes [`npm`](#qué-es-npm-y-para-qué-se-usa) no los reconocerá como caracteres válidos y te pedirá que vos nombres al Package Name con esas restricciones.
 </details>
 
 - Elegimos la opción de [`React`](#react) (obviamente).
-- Luego apretamos en la opción de JavaScript que está solo (utiliza [transpilador](#transpilador) Babel).
+- Luego apretamos en la opción de JavaScript que está solo (utiliza [`transpilador`](#de-qué-hablamos-cuando-decimos-transpilador) Babel).
 - Finalmente se nos indicarán los siguientes pasos:
 ```bash
 $ cd tuProyecto
@@ -53,13 +53,13 @@ $ npm run dev
 ### JavaScript
 * Es un lenguaje de programación interpretado de alto nivel.
 * Se utiliza para desarrollar páginas web dinámicas.
-* Permite manipular el contenido del sitio web por medio del [`DOM`](#dom).
+* Permite manipular el contenido del sitio web por medio del [`DOM`](#qué-es-el-dichoso-dom).
 
 ### React
 * Es una librería o framework de JavaScript pensada para construir Interfaces de Usuario (UI).
 * Especialmente utilizada en aplicaciones web de una sola página o SPA (Single Page Applications).
-* Divide la UI en <strong>componentes</strong> reutilizables.
-* Usa una estructura similar al HTML llamada JSX (JavaScript XML).
+* Divide la UI en `componentes` reutilizables.
+* Usa una estructura similar al HTML llamada `JSX` (JavaScript XML).
 * Administra los cambios en la UI utilizando un DOM virtual.
 
 ### Extensión JSX

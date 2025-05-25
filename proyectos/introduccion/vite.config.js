@@ -2,9 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 const repo = process.env.REPO_NAME || 'repasoReact';
-const project = process.env.PROJECT_DIR || 'introduccion';
+const proyecto = process.env.PROJECT_DIR || 'introduccion';
 
 export default defineConfig({
   plugins: [react()],
-  base: `/${repo}/proyectos/${project}/`,
+  base: `/${repo}/proyectos/${proyecto}/`,
 });

@@ -36,23 +36,7 @@ jobs:
               cp -r "$d/dist/." "docs/proyectos/$project_name/"
             fi
           done
-          # Crear index.html dinámicamente
-          cat <<EOF > docs/index.html
-          <!DOCTYPE html>
-          <html lang="es">
-          <head>
-            <meta charset="UTF-8" />
-            <title>Proyectos desplegados</title>
-          </head>
-          <body>
-            <h1>Proyectos desplegados</h1>
-            <ul>
-              $proyectos_list
-            </ul>
-          </body>
-          </html>
-          EOF
-
+     
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

@@ -6,3 +6,5 @@ const project = process.env.PROJECT_DIR || 'introduccion';
 
 export default defineConfig({
   plugins: [react()],
+  base: `/${repo}/proyectos/${project}/`,
+});

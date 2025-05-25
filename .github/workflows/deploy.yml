@@ -22,11 +22,9 @@ jobs:
       - name: Build all subprojects
         run: |
           mkdir -p docs/proyectos
-          proyectos_list=""
           for d in proyectos/* ; do
             if [ -f "$d/package.json" ]; then
               project_name=$(basename "$d")
-              proyectos_list="$proyectos_list<li><a href='./proyectos/$project_name/'>$project_name</a></li>"
               echo "Building $project_name"
               cd "$d"
               REPO_NAME="$REPO_NAME" PROJECT_DIR="$project_name" npm ci
@@ -36,7 +34,66 @@ jobs:
               cp -r "$d/dist/." "docs/proyectos/$project_name/"
             fi
           done
-     
+
+          # Crear index.html
+          cat <<EOF > docs/index.html
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <link rel="stylesheet" href="./styles.css">
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Proyectos</title>
+          </head>
+          <body>
+                  <h1 id="titulo">Proyectos React</h1>
+                  <nav>
+                      <ul class="proyectos">
+                          <li><a href="./proyectos/introduccion">Introducción</a></li>
+                          <li><a href="./proyectos/ejercicio1">Primer Ejercicio</a></li>
+                      </ul>
+                  </nav>
+          </body>
+          </html>
+          EOF
+
+          # Crear styles.css
+          cat <<EOF > docs/styles.css
+          body{
+              background: linear-gradient(90deg, #282C34 0%, #45A0E6 35%, #64E9F8 100%);
+              color: #fff;
+              text-align: center;
+          }
+
+          h1#titulo{
+              font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+              color: black;
+          }
+
+          ul.proyectos{
+              list-style: none;
+              padding: 0;
+              margin: 0 auto;
+              width: 10%;
+          }
+          ul.proyectos li {
+              margin-bottom: 0.5rem;
+              border-radius: 1rem;
+              border: solid 0.1rem #000;
+              background-color: #fff;
+          }
+
+          ul.proyectos li a{
+              text-decoration: none;
+              color: #000;
+              font-family: sans-serif;
+          }
+
+          ul.proyectos li a:hover{
+              color: orangered;
+          }
+          EOF
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:

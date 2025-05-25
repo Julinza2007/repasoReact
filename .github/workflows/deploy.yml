@@ -57,7 +57,7 @@ jobs:
           </html>
           EOF
 
-          # Crear styles.css
+          # Crear styles.css para index.html
           cat <<EOF > docs/styles.css
           body{
               background: linear-gradient(90deg, #282C34 0%, #45A0E6 35%, #64E9F8 100%);

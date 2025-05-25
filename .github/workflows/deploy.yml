@@ -27,8 +27,8 @@ jobs:
               project_name=$(basename "$d")
               echo "Building $project_name"
               cd "$d"
-              REPO_NAME="${{ env.REPO_NAME }}" PROJECT_DIR="$project_name" npm ci
-              REPO_NAME="${{ env.REPO_NAME }}" PROJECT_DIR="$project_name" npm run build
+              REPO_NAME="$REPO_NAME" PROJECT_DIR="$project_name" npm ci
+              REPO_NAME="$REPO_NAME" PROJECT_DIR="$project_name" npm run build
               cd ../..
               mkdir -p "docs/proyectos/$project_name"
               cp -r "$d/dist/." "docs/proyectos/$project_name/"

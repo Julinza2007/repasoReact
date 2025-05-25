@@ -1,0 +1,43 @@
+name: Deploy all proyectos to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'proyectos/**'
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get repo name
+        id: repo
+        run: echo "REPO_NAME=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
+
+      - name: Build all subprojects
+        run: |
+          mkdir -p docs/proyectos
+          for d in proyectos/* ; do
+            if [ -f "$d/package.json" ]; then
+              project_name=$(basename "$d")
+              echo "Building $project_name"
+              cd "$d"
+              REPO_NAME="${{ env.REPO_NAME }}" PROJECT_DIR="$project_name" npm ci
+              REPO_NAME="${{ env.REPO_NAME }}" PROJECT_DIR="$project_name" npm run build
+              cd ../..
+              mkdir -p "docs/proyectos/$project_name"
+              cp -r "$d/dist/." "docs/proyectos/$project_name/"
+            fi
+          done
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages

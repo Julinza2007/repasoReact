@@ -22,9 +22,11 @@ jobs:
       - name: Build all subprojects
         run: |
           mkdir -p docs/proyectos
+          proyectos_list=""
           for d in proyectos/* ; do
             if [ -f "$d/package.json" ]; then
               project_name=$(basename "$d")
+              proyectos_list="$proyectos_list<li><a href='./proyectos/$project_name/'>$project_name</a></li>"
               echo "Building $project_name"
               cd "$d"
               REPO_NAME="$REPO_NAME" PROJECT_DIR="$project_name" npm ci
@@ -34,6 +36,22 @@ jobs:
               cp -r "$d/dist/." "docs/proyectos/$project_name/"
             fi
           done
+          # Crear index.html dinámicamente
+          cat <<EOF > docs/index.html
+          <!DOCTYPE html>
+          <html lang="es">
+          <head>
+            <meta charset="UTF-8" />
+            <title>Proyectos desplegados</title>
+          </head>
+          <body>
+            <h1>Proyectos desplegados</h1>
+            <ul>
+              $proyectos_list
+            </ul>
+          </body>
+          </html>
+          EOF
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4

@@ -12,9 +12,12 @@ function Navegacion(){
     ));
 
     return(
-        <nav>
-            <ul>{link}</ul>
-        </nav>
+        <header>
+            <h1>Ejercicio 1</h1>
+            <nav>
+                <ul>{link}</ul>
+            </nav>
+        </header>
     )
 }
 export default Navegacion;
